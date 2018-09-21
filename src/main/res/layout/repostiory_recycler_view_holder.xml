@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_repository_background"
+    android:id="@+id/repository_holder">
+
+    <TextView
+        android:id="@+id/repository_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp"
+        android:textSize="22sp"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:id="@+id/repository_updated_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Temp Date"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/repository_title"/>
+
+    <TextView
+        android:id="@+id/repository_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp description"
+        android:textSize="18sp"
+        android:layout_below="@id/repository_updated_date"
+        android:layout_margin="8dp"/>
+
+</RelativeLayout>

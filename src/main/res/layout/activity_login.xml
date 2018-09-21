@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.LoginActivity">
+    
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/login_toolbar"
+        android:elevation="4dp"
+        style="@style/Header"/>
+
+    <RelativeLayout
+        android:id="@+id/relative_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="275dp"
+            android:layout_height="50dp"
+            android:hint="Username"
+            android:inputType="textEmailAddress" />
+
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="275dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/edit_username"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:layout_width="275dp"
+            android:layout_height="50dp"
+            android:id="@+id/button_login"
+            android:layout_below="@id/edit_password"
+            android:text="@string/login"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

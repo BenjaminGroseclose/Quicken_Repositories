@@ -1,0 +1,24 @@
+<resources>
+    <!-- general -->
+    <string name="app_name">Interview Question</string>
+    <string name="ok">Ok</string>
+    <string name="logout">Logout</string>
+    <string name="save_date_time">LOGGED OUT DATETIME</string>
+
+    <!-- login page -->
+    <string name="login">Login</string>
+    <string name="loginInfo">Login Informatoin</string>
+    <string name="login_username_dialog">Username: Must be email format. MyEmail@Email.com</string>
+    <string name="login_password_dialog">Password: Must be a least 9 characters, and have at least one uppercase and one lowercase character, and one number. Password123</string>
+    <string name="login_save_username">Saved Username</string>
+    <string name="login_save_password">SavedPassword</string>
+
+    <!-- repository page -->
+    <string name="return_login_extra">LOGGED OUT</string>
+
+    <!-- web view page -->
+    <string name="passed_url_extra">PASSED URL</string>
+    <string name="passed_title">PASSED TITLE</string>
+    <string name="web_view_back">Back</string>
+
+</resources>
