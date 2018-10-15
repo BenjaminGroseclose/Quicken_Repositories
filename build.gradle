@@ -2,14 +2,73 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.example.bgroseclose.interviewquestion"
-        minSdkVersion 25
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    def versionPropsFile = file('version.properties')
+    def value = 0
+    Properties versionProps = new Properties()
+    if(!versionPropsFile.exists()) {
+        versionProps['VERSION_PATCH'] = "0"
+        versionProps['VERSION_NUMBER'] = "0"
+        versionProps['VERSION_BUILD'] = "-1"
+        versionProps.store(versionPropsFile.newWriter(), null)
     }
+
+    def runTasks = gradle.startParameter.taskNames
+    if ('assembleRelease' in runTasks) {
+        value = 1
+    }
+
+    def mVersionName = ""
+    def mFileName = ""
+
+    if(versionPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(versionPropsFile))
+        versionProps['VERSION_PATCH'] = (versionProps['VERSION_PATCH'].toInteger() + value).toString()
+        versionProps['VERSION_NUMBER'] = (versionProps['VERSION_NUMBER'].toInteger() + value).toString()
+        versionProps['VERSION_BUILD'] = (versionProps['VERSION_BUILD'].toInteger() + 1).toString()
+
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+        // change major and minor version here
+        mVersionName = "1.0.${versionProps['VERSION_PATCH']}"
+        // change AppName here
+        mFileName = "InterviewQuestion-${mVersionName}.apk"
+
+
+        defaultConfig {
+            applicationId "com.example.bgroseclose.interviewquestion"
+            minSdkVersion 25
+            targetSdkVersion 28
+            versionCode versionProps['VERSION_NUMBER'].toInteger()
+            versionName "${mVersionName} Build: ${versionProps['VERSION_BUILD']}"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+    } else {
+        throw new FileNotFoundException("Could not read version.properties")
+    }
+
+    if ('assembleRelease' in runTasks) {
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                    outputFileName = mFileName
+                }
+            }
+        }
+    }
+
+    task copyApkFiles(type: Copy) {
+        from 'build/output/apk/release'
+        into '../apk'
+        include mFileName
+    }
+
+    afterEvaluate {
+        assembleRelease.doLast {
+            tasks.copyApkFiles.execute()
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
